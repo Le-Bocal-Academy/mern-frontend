@@ -2,10 +2,19 @@
   text-align: center;
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+a:hover{
+  text-decoration: underline;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

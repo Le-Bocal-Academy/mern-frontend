@@ -1,0 +1,14 @@
+.navbar {
+    display:flex;
+    flex-direction: column;
+    border:solid 2px white;
+    padding:2%;
+    margin:2%;
+}
+
+  
+:is(a, a:visited) {
+    color:white;
+    text-decoration: none;
+}
+  
