@@ -1,9 +1,9 @@
-export function User({ name, description, onDeleteUser }) {
+export function Fruit({ name, description, onDeleteFruit }) {
   return (
-    <div className="User">
+    <div className="Fruit">
       <h2>{name}</h2>
       <p>{description}</p>
-      <DeleteButton onDelete={onDeleteUser}>Supprimer utilisateur</DeleteButton>
+      <DeleteButton onDelete={onDeleteFruit}>Supprimer fruit</DeleteButton>
     </div>
   );
 }

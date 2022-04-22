@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import services from "../../services";
 import "./index.css";
+import { LabelBlock } from "../../components/LabelBlock";
 
 function getFormValue(elements, name) {
   return elements[name]?.value;
 }
 
-export function CreateUser() {
+export function CreateFruit() {
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -25,16 +26,16 @@ export function CreateUser() {
     }
 
     services
-      .createUser({ name, description })
+      .createFruit({ name, description })
       .then(() => navigate("/users"))
       .catch(console.log);
   }
 
   return (
     <div>
-      <h1>Création d'Utilisateurs</h1>
+      <h1>Création de fruits</h1>
       <form onSubmit={handleSubmit} className="create-user">
-        <LabelBlock labelName="Nom">
+        <LabelBlock labelName="Nom du fruit">
           <input name="name" />
         </LabelBlock>
 
@@ -47,12 +48,3 @@ export function CreateUser() {
     </div>
   );
 }
-
-const LabelBlock = ({ labelName, children }) => {
-  return (
-    <div className="block">
-      <label>{labelName}</label>
-      {children}
-    </div>
-  );
-};

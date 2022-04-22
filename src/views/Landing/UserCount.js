@@ -6,7 +6,7 @@ export function UserCount() {
 
   useEffect(() => {
     services
-      .getUsersCount()
+      .getFruitsCount()
       .then((response) => {
         console.log(response);
         setCount(response.count);
@@ -16,11 +16,7 @@ export function UserCount() {
 
   return (
     <>
-      {count !== null ? (
-        <span>. Il y a {count} utilisateurs.</span>
-      ) : (
-        <span></span>
-      )}
+      {count !== null ? <span>. Il y a {count} fruits.</span> : <span></span>}
     </>
   );
 }

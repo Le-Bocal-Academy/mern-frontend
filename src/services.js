@@ -5,23 +5,31 @@ const baseURL = "http://localhost:1337"; // api.myamazingwebsite.com
 const base = axios.create({ baseURL });
 
 const services = {
-  getUsersList() {
-    return base.get(`/users`).then((res) => res.data);
+  login(body) {
+    // email, password
+    return base.post("/auth/login", body);
   },
-  getUsersCount() {
-    return base.get("/users/count").then((res) => res.data);
+  signup(body) {
+    // email, password, confirmPassword
+    return base.post("/auth/signup", body);
   },
-  getUserByName(name) {
-    return base.get(`/users/name/${name}`).then((res) => res.data);
+  getFruitsList() {
+    return base.get(`/fruits`).then((res) => res.data);
   },
-  getUserById(id) {
-    return base.get(`/users/name/${id}`).then((res) => res.data);
+  getFruitsCount() {
+    return base.get("/Fruits/count").then((res) => res.data);
   },
-  deleteUserById(id) {
-    return base.delete(`/users/${id}`).then((res) => res.data);
+  getFruitByName(name) {
+    return base.get(`/fruits/name/${name}`).then((res) => res.data);
   },
-  createUser(body) {
-    return base.post("/users", body).then((res) => res.data);
+  getFruitById(id) {
+    return base.get(`/fruits/name/${id}`).then((res) => res.data);
+  },
+  deleteFruitById(id) {
+    return base.delete(`/fruits/${id}`).then((res) => res.data);
+  },
+  createFruit(body) {
+    return base.post("/fruits", body).then((res) => res.data);
   },
 };
 

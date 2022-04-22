@@ -1,21 +1,48 @@
 import "./App.css";
 
 import { Route, Routes } from "react-router-dom";
-import UsersList from "./views/UsersList";
-import { CreateUser } from "./views/CreateUser";
+import FruitsList from "./views/FruitsList";
+import { CreateFruit } from "./views/CreateFruit";
 import { Landing } from "./views/Landing";
 import { NavBar } from "./components/Navbar";
+import LoginPage from "./views/Auth/Login";
+import SignupPage from "./views/Auth/Signup";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [connected, setConnected] = useState(false);
+
+  useEffect(() => {
+    const connected = localStorage.getItem("connected");
+    setConnected(connected === "true");
+  }, []);
+
   return (
     <div className="App">
+      {connected && <h1>Connected</h1>}
       <header className="App-header">
+        <NavBar connected={connected} setConnected={setConnected} />
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/users" element={<UsersList />} />
-          <Route path="/users/create" element={<CreateUser />} />
+          <Route path="/" element={<Landing connected={connected} />} />
+          <Route
+            path="/fruits"
+            element={<FruitsList connected={connected} />}
+          />
+          <Route
+            path="/fruits/create"
+            element={<CreateFruit connected={connected} />}
+          />
+          <Route
+            path="/login"
+            element={
+              <LoginPage connected={connected} setConnected={setConnected} />
+            }
+          />
+          <Route
+            path="/signup"
+            element={<SignupPage connected={connected} />}
+          />
         </Routes>
-        <NavBar />
       </header>
     </div>
   );
