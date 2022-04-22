@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 
 import { Route, Routes } from "react-router-dom";
@@ -7,14 +8,13 @@ import { Landing } from "./views/Landing";
 import { NavBar } from "./components/Navbar";
 import LoginPage from "./views/Auth/Login";
 import SignupPage from "./views/Auth/Signup";
-import { useEffect, useState } from "react";
 
 function App() {
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const connected = localStorage.getItem("connected");
-    setConnected(connected === "true");
+    const hasJwt = localStorage.getItem("jwt"); // EzbBlablablalba
+    setConnected(Boolean(hasJwt)); // on convertit en booléen
   }, []);
 
   return (

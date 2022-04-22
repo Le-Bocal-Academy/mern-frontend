@@ -21,8 +21,9 @@ function LoginPage({ setConnected }) {
     e.preventDefault();
     services
       .login(body)
-      .then(() => {
-        localStorage.setItem("connected", true);
+      .then((result) => {
+        const { jwt } = result;
+        localStorage.setItem("jwt", jwt);
         setConnected(true);
       })
       .catch((err) => {

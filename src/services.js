@@ -7,14 +7,17 @@ const base = axios.create({ baseURL });
 const services = {
   login(body) {
     // email, password
-    return base.post("/auth/login", body);
+    return base.post("/auth/login", body).then((res) => res.data);
   },
   signup(body) {
     // email, password, confirmPassword
     return base.post("/auth/signup", body);
   },
   getFruitsList() {
-    return base.get(`/fruits`).then((res) => res.data);
+    const token = localStorage.getItem("jwt");
+    return base
+      .get(`/fruits`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => res.data);
   },
   getFruitsCount() {
     return base.get("/Fruits/count").then((res) => res.data);
@@ -26,10 +29,20 @@ const services = {
     return base.get(`/fruits/name/${id}`).then((res) => res.data);
   },
   deleteFruitById(id) {
-    return base.delete(`/fruits/${id}`).then((res) => res.data);
+    const token = localStorage.getItem("jwt");
+    return base
+      .delete(`/fruits/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => res.data);
   },
   createFruit(body) {
-    return base.post("/fruits", body).then((res) => res.data);
+    const token = localStorage.getItem("jwt");
+    return base
+      .post("/fruits", body, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => res.data);
   },
 };
 

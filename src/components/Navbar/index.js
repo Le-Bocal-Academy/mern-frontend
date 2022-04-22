@@ -1,16 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 export function NavBar({ connected, setConnected }) {
+  const navigate = useNavigate();
+
   function disconnect() {
+    navigate("/");
     setConnected(false);
-    localStorage.removeItem("connected");
+    localStorage.removeItem("jwt");
   }
 
   return (
     <nav className="navbar">
       <Link to="/">Accueil</Link>
-      <Link to="/fruits">Fruits</Link>
+      {connected === true && <Link to="/fruits">Fruits</Link>}
       {connected === true && <Link to="/fruits/create">Créer un fruit</Link>}
       {connected === true && <a onClick={disconnect}>Se déconnecter</a>}
       {connected === false && <Link to="/login">Se connecter</Link>}
