@@ -3,9 +3,7 @@ import services from "../../services";
 import { Fruit } from "./Fruit";
 import "./FruitList.css";
 
-function FruitsList(props) {
-  console.log(props);
-
+function FruitsList() {
   const [fruits, setFruits] = useState([]);
 
   function fetchAndSetFruits() {

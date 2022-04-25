@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useAuth } from "../../AuthProvider";
 import { LabelBlock } from "../../components/LabelBlock";
 import services from "../../services";
 
-function LoginPage({ setConnected }) {
+function LoginPage() {
+  const { setConnected } = useAuth();
+
   const [body, setBody] = useState({
     email: "",
     password: "",
